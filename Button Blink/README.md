@@ -1,18 +1,8 @@
 # Button Blink
-Now that you have looked at blinking the LED from some built in delay, but what if we wanted to control the state of the LED by a button? You may think "Why would I need a Microcontroller to perform the job of a switch?". And that is where you come in. The bare minimum for this part of the lab is to essentially replicate a switch with your development board.
+The purpose of this code is to create a virtual switch with a button turning on an LED. The boards used for this were 
 
-# YOU NEED TO CREATE THE FOLLOWING FOLDERS
-* MSP430G2553
-* MSP(FILL IN THE PROCESSOR YOU ARE USING)
+# G2
+To create a switch that turns on an LED with a button, multiple ports are required, with P1.3 being the button to activate the LED, and P1.0 being the output direction that the LED is on.  A mux of P1SEL is used to detect if P1.3 is sending a bit to the LED. Within the if statement, the & statement of P1IN and BIT3 is checked by the mux, and if it returns a value of 0, the LED will turn on. The else statement being the LED is off, allowing the button to control the LED directly.
 
-## README
-Remember to replace this README with your README once you are ready to submit. I would recommend either making a copy of this file or taking a screen shot. There might be a copy of all of these README's in a folder on the top level depending on the exercise. Make sure you talk about how your button is configured (momentary or continuous. Normally open or closed. Does the button press indicate when the LED should be on or off.)
-
-## Extra Work
-What can we do to make this a little bit more worthy of needing a microcontroller.
-
-### Button Based Speed Control
-Much like the UART controlled speed, what if you could cycle between speeds based on a button press? The speed could progress through a cycle of "Off-Slow-Medium-Fast" looping back when you hit the end.
-
-### Color Change
-What if upon a button press, the LED which was blinking changed. Some of the development boards contain two LEDs, so you could swap between a Red and a Green LED.
+# FR2311
+The FR2311 needed to be designed differently than the G2, as it did not have a P1SEL to utilize. After arranging the ports for the board for the button (P1.1), and the output direction (P1.0), the GPIO high impedence mode is disable to use previous port settings. The if statement is modified from the G2 iteration, with an AND statement between P1IN and BIT1 to activate the LED. The issue with this setup is that the button is subject to contact bounce, in that one press may result in multiple outputs. 
