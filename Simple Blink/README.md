@@ -9,4 +9,4 @@ On the G2, utilizing the msp430g2553 header makes assigning the ports easier, as
 ## F5229
 On the F5229, utilizing the msp430f5229 header, the code remains relatively unchanged due to the necessary ports needed to emulate a blinking LED shared the same funciton between the boards. 
 
-![] (https://media.giphy.com/media/Zva3vGcysHIGx70Ydv/giphy.gif)
+![](https://media.giphy.com/media/Zva3vGcysHIGx70Ydv/giphy.gif)
