@@ -1,0 +1,31 @@
+#include <msp430.h> 
+#include  <msp430fr2311.h> // For the M430G2553 chip,
+
+// This code was taken from Chris Hammond1 on TI's Commmunity forum and then modified. To find the original code, use the link given below.
+// https://e2e.ti.com/support/microcontrollers/f/166/t/185139?Turn-on-LED-with-button-Press-
+
+
+void main(void)
+{
+        WDTCTL = WDTPW + WDTHOLD;               // Stop watchdog timer
+
+        P1REN |= BIT8;                          //Controls the PullDown Resistor
+
+        P1DIR &= ~BIT1;                         // Push Port 1 P1.1 (push button) as input
+        P1DIR |= BIT0;                          // Set P1.0 (LED) to output direction
+
+        PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode
+                                                   // to activate previously configured port settings
+                                                    //Scott Wood (Embedded Systems Section 1) helped with this line of code
+        
+        P1OUT &= ~BIT0;                         // Set the LED off
+
+        while( 1 ) {
+                if( P1IN & BIT1 )         // When button is pushed down and transmits a bit
+                                            //Resulting button presses are very finiky, subject to contact bounce
+                        P1OUT |= BIT0;          // Set LED on when button down
+                else
+                        P1OUT &= ~BIT0;         // Set LED off when button off
+        }
+        
+}
