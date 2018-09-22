@@ -1,5 +1,5 @@
 #include <msp430.h> 
-#include  <msp430fr2311.h> // For the M430G2553 chip,
+#include  <msp430fr2311.h> // For the M430FR2311 chip,
 
 // This code was taken from Chris Hammond1 on TI's Commmunity forum and then modified. To find the original code, use the link given below.
 // https://e2e.ti.com/support/microcontrollers/f/166/t/185139?Turn-on-LED-with-button-Press-
